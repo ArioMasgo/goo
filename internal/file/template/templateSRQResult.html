@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario de S.R.Q</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .instructions {
+            margin: 20px 0;
+        }
+
+        .questions-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .question {
+            border: 1px solid #000;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .response-options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Cuestionario de S.R.Q</h1>
+        <p>Universidad Nacional Agraria de la Selva - Dirección de Bienestar Universitario - Área de Psicopedagogía</p>
+    </div>
+
+    <h2>Datos del Participante</h2>
+    <p>Apellidos y nombres: _____________________________ DNI: ____________</p>
+    <p>Fecha de nacimiento: ___/___/_____ Edad: ____ Sexo: ( ) M ( ) F</p>
+    <p>Colegio de procedencia: ( ) Estatal ( ) Privado</p>
+    <p>Carrera profesional: __________________ Código Universitario: ____________</p>
+
+    <div class="instructions">
+        <h3>Instrucciones:</h3>
+        <p>Marque con una X en el cuadro que mejor describa su caso particular; procure contestar con sinceridad.</p>
+    </div>
+
+    <div class="questions-container">
+        {{ range .Questions }}
+        <div class="question">
+            <p><strong>{{ .Number }}. {{ .Text }}</strong></p>
+            <div class="response-options">
+                <label><input type="checkbox"> Sí</label>
+                <label><input type="checkbox"> No</label>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</body>
+
+</html>
+
+<!-- Ahora las preguntas se distribuyen en dos columnas con opciones de respuesta -->

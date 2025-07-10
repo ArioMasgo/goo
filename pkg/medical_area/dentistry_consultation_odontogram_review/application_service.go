@@ -1,0 +1,125 @@
+package dentistry_consultation_odontogram_review
+
+import (
+	"dbu-api/internal/logger"
+	"dbu-api/internal/models"
+	"fmt"
+	"github.com/google/uuid"
+)
+
+type PortsServerOdontogramReview interface {
+	CreateOdontogramReview(id, consulta_odontologia_id, caries, erupcionado, perdido, costo, fecha_pago, cpod, diagnostico, mes, comentarios string) (*OdontogramReview, int, error)
+	UpdateOdontogramReview(id, consulta_odontologia_id, caries, erupcionado, perdido, costo, fecha_pago, cpod, diagnostico, mes, comentarios string) (*OdontogramReview, int, error)
+	DeleteOdontogramReview(id string) (int, error)
+	DeleteOdontogramReviewByIDConsultation(id string) (int, error)
+	GetOdontogramReviewByID(id string) (*OdontogramReview, int, error)
+	GetOdontogramReviewByIDConsultation(id string) (*OdontogramReview, int, error)
+	GetAllOdontogramReview() ([]*OdontogramReview, error)
+}
+
+type service struct {
+	repository ServicesOdontogramReviewRepository
+	user       *models.User
+	txID       string
+}
+
+func NewOdontogramReviewService(repository ServicesOdontogramReviewRepository, user *models.User, TxID string) PortsServerOdontogramReview {
+	return &service{repository: repository, user: user, txID: TxID}
+}
+
+func (s *service) CreateOdontogramReview(id, consulta_odontologia_id, caries, erupcionado, perdido, costo, fecha_pago, cpod, diagnostico, mes, comentarios string) (*OdontogramReview, int, error) {
+
+	m := NewOdontogramReview(id, consulta_odontologia_id, caries, erupcionado, perdido, costo, fecha_pago, cpod, diagnostico, mes, comentarios)
+	if valid, err := m.valid(); !valid {
+		logger.Error.Println(s.txID, " - don't meet validations:", err)
+		return m, 15, err
+	}
+	if err := s.repository.create(m); err != nil {
+		if err.Error() == "rows affected error" {
+			return m, 108, nil
+		}
+		logger.Error.Println(s.txID, " - couldn't create patient :", err)
+		return m, 3, err
+	}
+	return m, 29, nil
+}
+
+func (s *service) UpdateOdontogramReview(id, consulta_odontologia_id, caries, erupcionado, perdido, costo, fecha_pago, cpod, diagnostico, mes, comentarios string) (*OdontogramReview, int, error) {
+	m := NewOdontogramReview(id, consulta_odontologia_id, caries, erupcionado, perdido, costo, fecha_pago, cpod, diagnostico, mes, comentarios)
+	valid, err := m.valid()
+	if err != nil {
+		logger.Error.Println(s.txID, " - couldn't meet validations:", err)
+		return nil, 15, err
+	}
+	if !valid {
+		logger.Error.Println(s.txID, " - don't meet validations:", err)
+		return nil, 15, err
+	}
+	if err := s.repository.update(m); err != nil {
+		logger.Error.Println(s.txID, " - couldn't update patient :", err)
+		return nil, 18, err
+	}
+	return m, 29, nil
+}
+
+func (s *service) DeleteOdontogramReview(id string) (int, error) {
+	if err := uuid.Validate(id); err != nil {
+		logger.Error.Println(s.txID, " - don't meet validations:", fmt.Errorf("id is required"))
+		return 15, fmt.Errorf("id is required")
+	}
+
+	if err := s.repository.delete(id); err != nil {
+		if err.Error() == "rows affected error" {
+			return 108, nil
+		}
+		logger.Error.Println(s.txID, " - couldn't update row:", err)
+		return 20, err
+	}
+	return 28, nil
+}
+
+func (s *service) DeleteOdontogramReviewByIDConsultation(id string) (int, error) {
+	if err := uuid.Validate(id); err != nil {
+		logger.Error.Println(s.txID, " - don't meet validations:", fmt.Errorf("id is required"))
+		return 15, fmt.Errorf("id is required")
+	}
+
+	if err := s.repository.deleteByIDConsultation(id); err != nil {
+		if err.Error() == "rows affected error" {
+			return 108, nil
+		}
+		logger.Error.Println(s.txID, " - couldn't update row:", err)
+		return 20, err
+	}
+	return 28, nil
+}
+
+func (s *service) GetOdontogramReviewByID(id string) (*OdontogramReview, int, error) {
+	if err := uuid.Validate(id); err != nil {
+		logger.Error.Println(s.txID, " - don't meet validations:", fmt.Errorf("id is required"))
+		return nil, 15, fmt.Errorf("id is required")
+	}
+	m, err := s.repository.getByID(id)
+	if err != nil {
+		logger.Error.Println(s.txID, " - couldn`t getByID row:", err)
+		return nil, 22, err
+	}
+	return m, 29, nil
+}
+
+func (s *service) GetOdontogramReviewByIDConsultation(id string) (*OdontogramReview, int, error) {
+	if err := uuid.Validate(id); err != nil {
+		logger.Error.Println(s.txID, " - don't meet validations:", fmt.Errorf("id is required"))
+		return nil, 15, fmt.Errorf("id is required")
+	}
+	m, err := s.repository.getByIDConsultation(id)
+	if err != nil {
+		logger.Error.Println(s.txID, " - couldn`t getByID row:", err)
+		return nil, 22, err
+	}
+	return m, 29, nil
+}
+
+func (s *service) GetAllOdontogramReview() ([]*OdontogramReview, error) {
+	return s.repository.getAll()
+}

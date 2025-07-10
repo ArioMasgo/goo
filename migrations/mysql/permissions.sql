@@ -1,0 +1,36 @@
+CREATE TABLE `permissions` (
+                               `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                               `description` varchar(50) NOT NULL,
+                               `method` varchar(10) NOT NULL,
+                               `path` varchar(100) NOT NULL,
+                               `created_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+                               `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+                               PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `permissions` (`id`, `description`, `method`, `path`, `created_at`, `updated_at`) VALUES
+                                                                                                  (1, 'Crear Residencias', 'POST', '/v1/residencias', '2024-11-07 18:39:12', '2024-11-07 18:39:12'),
+                                                                                                  (2, 'Actualizar Residencia', 'PUT', '/v1/residencias', '2024-11-07 23:43:28', '2024-11-07 23:43:28'),
+                                                                                                  (3, 'Obtener residencias', 'GET', '/v1/residencias', '2024-11-15 03:55:54', '2024-11-15 03:55:54'),
+                                                                                                  (4, 'Obtener residencia por id', 'GET', '/v1/residencias/{id}', '2024-11-07 23:43:28', '2024-11-07 23:43:28'),
+                                                                                                  (5, 'Delete residencia por id', 'DELETE', '/v1/residencias/{id}', '2024-11-07 23:43:28', '2024-11-07 23:43:28'),
+                                                                                                  (6, 'registrar normativa', 'POST', '/v1/resoluciones', '2025-01-18 19:45:15', '2025-01-18 19:45:15'),
+                                                                                                  (7, 'Obtener alumnos por residencia', 'GET', '/v1/residencias/{id}/alumnos', '2024-11-07 23:43:28', '2024-11-07 23:43:28'),
+                                                                                                  (8, 'Asignacion automatica', 'POST', '/v1/residencias/{id}/asignaciones', '2024-11-07 23:43:28', '2024-11-07 23:43:28'),
+                                                                                                  (9, 'Crear capitulo', 'POST', '/v1/capitulos', '2025-01-18 16:51:56', '2025-01-18 16:51:56'),
+                                                                                                  (10, 'Registrar articulo', 'POST', '/v1/articulos', '2025-01-18 17:10:17', '2025-01-18 17:10:17'),
+                                                                                                  (11, 'Crear falta', 'POST', '/v1/faltas', '2025-01-18 17:31:09', '2025-01-18 17:31:09'),
+                                                                                                  (12, 'Consultar resolucion', 'GET', '/v1/resoluciones', '2025-01-28 03:39:38', '2025-01-28 03:39:38'),
+                                                                                                  (13, 'Capitulos por resolucion id', 'GET', '/resolucion-id/{id}', '2025-01-29 01:54:27', '2025-01-29 01:54:27'),
+                                                                                                  (14, 'Asignación automática', 'POST', '/v1/automatizacion/asignacion-cuartos', '2025-01-30 06:28:18', '2025-01-30 06:28:18'),
+                                                                                                  (15, 'Asignación manual', 'POST', '/v1/residencias/cuartos/{id}/asignar', '2025-02-17 00:15:58', '2025-02-17 00:15:58'),
+                                                                                                  (16, 'Eliminación de asignación', 'DELETE', '/v1/residencias/cuartos/{id}/eliminar-asignacion', '2025-02-17 00:15:58', '2025-02-17 00:15:58'),
+                                                                                                  (17, 'Obtener alumnos por convocatoria', 'GET', '/v1/convocatorias/{id}/alumnos-aceptados', '2025-02-10 04:18:30', '2025-02-10 04:18:30'),
+                                                                                                  (18, 'Obtener reporte de residencias por convocatoria', 'GET', '/v1/convocatorias/{id}/reporte-residencias', '2025-02-10 04:18:30', '2025-02-10 04:18:30'),
+                                                                                                  (19, 'Obtener cuartos por residencia', 'GET', '/v1/residencias/{id}/cuartos', '2024-11-07 23:43:28', '2024-11-07 23:43:28'),
+                                                                                                  (22, 'Actualizar configuración de residencia', 'PUT', '/v1/residencias/{id}/configuracion', '2024-11-07 23:43:28', '2024-11-07 23:43:28'),
+                                                                                                  (23, 'Actualizar cuarto', 'PUT', '/v1/residencias/cuartos', '2024-11-07 23:43:28', '2024-11-07 23:43:28'),
+                                                                                                  (24, 'listar visitas generales', 'GET', '/v1/visita-general', '2025-03-11 22:17:36', '2025-03-11 22:17:36'),
+                                                                                                  (25, 'Crear visita', 'POST', '/v1/visita-general', '2025-03-13 22:58:05', '2025-03-13 22:58:05'),
+                                                                                                  (26, 'Actualizar visita', 'PUT', '/v1/visita-general', '2025-03-15 15:10:34', '2025-03-15 15:10:34'),
+                                                                                                  (27, 'Eliminar visita', 'DELETE', '/v1/visita-general/{id}', '2025-03-15 15:11:14', '2025-03-15 15:11:14');

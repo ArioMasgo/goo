@@ -1,0 +1,3142 @@
+basePath: /
+definitions:
+  authentication.JWTToken:
+    properties:
+      access_token:
+        type: string
+      refresh_token:
+        type: string
+    type: object
+  authentication.RequestLogin:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  models.AccompanyingData:
+    properties:
+      dni:
+        type: string
+      edad:
+        type: string
+      id:
+        type: string
+      nombres_apellidos:
+        type: string
+    type: object
+  models.AssignedGood:
+    properties:
+      code:
+        type: string
+    type: object
+  models.AssignmentRoom:
+    properties:
+      estado:
+        type: string
+      fecha_asignacion:
+        type: string
+      id:
+        type: string
+    type: object
+  models.BuccalConsultation:
+    properties:
+      comentarios:
+        type: string
+      diagnostico:
+        type: string
+      examen_auxiliar:
+        type: string
+      examen_clinico:
+        type: string
+      id:
+        type: string
+      indicaciones:
+        type: string
+      relato:
+        type: string
+      tratamiento:
+        type: string
+    type: object
+  models.BuccalProcedure:
+    properties:
+      comentarios:
+        type: string
+      costo:
+        type: string
+      fecha_pago:
+        type: string
+      id:
+        type: string
+      pieza_dental:
+        type: string
+      recibo:
+        type: string
+      tipo_procedimiento:
+        type: string
+    type: object
+  models.BuccalTest:
+    properties:
+      comentarios:
+        type: string
+      cpod:
+        type: string
+      id:
+        type: string
+      ihos:
+        type: string
+      observacion:
+        type: string
+      odontograma_img:
+        type: string
+    type: object
+  models.Configuration:
+    properties:
+      id:
+        type: string
+      is_newbie:
+        type: boolean
+      minimum_grade_engineering:
+        type: number
+      minimum_grade_fcea:
+        type: number
+      percentage_engineering:
+        type: number
+      percentage_fcea:
+        type: number
+    type: object
+  models.ConsultationAssignment:
+    properties:
+      area_asignada:
+        type: string
+      consulta_id:
+        type: string
+    type: object
+  models.ConsultationMedicalArea:
+    properties:
+      area_medica:
+        type: string
+      fecha_consulta:
+        type: string
+      id:
+        type: string
+      paciente_id:
+        type: string
+    type: object
+  models.Exams:
+    properties:
+      consulta:
+        $ref: '#/definitions/models.BuccalConsultation'
+      consulta_general:
+        $ref: '#/definitions/models.IntegralAttentionOther'
+      consulta_medicina_general:
+        $ref: '#/definitions/models.GeneralMedicineConsultation'
+      examen_fisico:
+        $ref: '#/definitions/models.PhysicalTest'
+      examen_laboratorio:
+        $ref: '#/definitions/models.LaboratoryTest'
+      examen_preferencial:
+        $ref: '#/definitions/models.PreferentialTest'
+      examen_sexualidad:
+        $ref: '#/definitions/models.SexualityTest'
+      examen_visual:
+        $ref: '#/definitions/models.VisualTest'
+      procedimientos_realizados:
+        items:
+          $ref: '#/definitions/models.PerformedProcedures'
+        type: array
+      tratamiento_medicamentoso:
+        items:
+          $ref: '#/definitions/models.MedicationTreatment'
+        type: array
+      vacunas:
+        items:
+          $ref: '#/definitions/models.Vaccine'
+        type: array
+    type: object
+  models.Floor:
+    properties:
+      floor:
+        type: integer
+      rooms:
+        items:
+          $ref: '#/definitions/models.Room'
+        type: array
+    type: object
+  models.GeneralMedicineConsultation:
+    properties:
+      anamnesis:
+        type: string
+      examen_clinico:
+        type: string
+      fecha_hora:
+        type: string
+      id:
+        type: string
+      indicaciones:
+        type: string
+    type: object
+  models.IntegralAttentionOther:
+    properties:
+      apetito:
+        type: string
+      costo:
+        type: string
+      deposiciones:
+        type: string
+      diagnostico:
+        type: string
+      edad:
+        type: string
+      estado_animo:
+        type: string
+      examenes_axuliares:
+        type: string
+      fecha:
+        type: string
+      fecha_pago:
+        type: string
+      frecuencia_cardiaca:
+        type: string
+      frecuencia_respiratoria:
+        type: string
+      hora:
+        type: string
+      id:
+        type: string
+      indice_masa_corporal:
+        type: string
+      motivo_consulta:
+        type: string
+      numero_recibo:
+        type: string
+      observacion:
+        type: string
+      orina:
+        type: string
+      peso:
+        type: string
+      presion_arterial:
+        type: string
+      referencia:
+        type: string
+      sed:
+        type: string
+      suenio:
+        type: string
+      talla:
+        type: string
+      temperatura:
+        type: string
+      tiempo_enfermedad:
+        type: string
+      tratamiento:
+        type: string
+    type: object
+  models.LaboratoryTest:
+    properties:
+      bk:
+        type: string
+      colesterol:
+        type: string
+      comentarios:
+        type: string
+      examen_orina:
+        type: string
+      glucosa:
+        type: string
+      hemograma:
+        type: string
+      id:
+        type: string
+      serologia:
+        type: string
+    type: object
+  models.Links:
+    properties:
+      next:
+        type: string
+      prev:
+        type: string
+    type: object
+  models.MedicalConsultation:
+    properties:
+      fecha_consulta:
+        type: string
+      id:
+        type: string
+      paciente_id:
+        type: string
+    type: object
+  models.MedicationTreatment:
+    properties:
+      area_solicitante:
+        type: string
+      especialista_solicitante:
+        type: string
+      hora_aplicacion:
+        type: string
+      id:
+        type: string
+      nombre_generico_medicamento:
+        type: string
+      observaciones:
+        type: string
+      responsable_atencion:
+        type: string
+      via_administracion:
+        type: string
+    type: object
+  models.Metadata:
+    properties:
+      limit:
+        type: integer
+      links:
+        $ref: '#/definitions/models.Links'
+      offset:
+        type: integer
+      page:
+        type: integer
+      total:
+        type: integer
+      total_pages:
+        type: integer
+    type: object
+  models.Patients:
+    properties:
+      alergias:
+        type: string
+      antecedentes:
+        items:
+          $ref: '#/definitions/models.RequestAntecedents'
+        type: array
+      apellidos:
+        type: string
+      codigo_sga:
+        type: string
+      correo_electronico:
+        type: string
+      direccion:
+        type: string
+      dni:
+        type: string
+      edad:
+        type: string
+      escuela_profesional:
+        type: string
+      estado_civil:
+        type: string
+      factor_rh:
+        type: string
+      fecha_nacimiento:
+        type: string
+      grupo_sanguineo:
+        type: string
+      id:
+        type: string
+      lugar_nacimiento:
+        type: string
+      nombres:
+        type: string
+      numero_celular:
+        type: string
+      ocupacion:
+        type: string
+      procedencia:
+        type: string
+      ram:
+        type: boolean
+      sexo:
+        type: string
+      tipo_persona:
+        type: string
+    type: object
+  models.PerformedProcedures:
+    properties:
+      area_solicitante:
+        type: string
+      comentarios:
+        type: string
+      costo:
+        type: string
+      especialista_solicitante:
+        type: string
+      fecha_pago:
+        type: string
+      id:
+        type: string
+      numero_recibo:
+        type: string
+      procedimiento:
+        type: string
+    type: object
+  models.PhysicalTest:
+    properties:
+      comentarios:
+        type: string
+      id:
+        type: string
+      indice_masa_corporal_img:
+        type: string
+      perimetro_cintura:
+        type: string
+      presion_arterial:
+        type: string
+      talla_peso:
+        type: string
+    type: object
+  models.PreferentialTest:
+    properties:
+      aparato_cardiovascular:
+        type: string
+      aparato_digestivo:
+        type: string
+      aparato_genitourinario:
+        type: string
+      aparato_respiratorio:
+        type: string
+      comentarios:
+        type: string
+      examen_mama:
+        type: string
+      id:
+        type: string
+      papanicolau:
+        type: string
+    type: object
+  models.RequestAntecedents:
+    properties:
+      estado_antecedente:
+        type: string
+      id:
+        type: string
+      nombre_antecedente:
+        type: string
+    type: object
+  models.RequestDentistryConsultation:
+    properties:
+      consulta:
+        $ref: '#/definitions/models.BuccalConsultation'
+      consulta_odontologia:
+        $ref: '#/definitions/models.ConsultationMedicalArea'
+      examen_bucal:
+        $ref: '#/definitions/models.BuccalTest'
+      procedimiento:
+        $ref: '#/definitions/models.BuccalProcedure'
+    type: object
+  models.RequestMedicalConsultation:
+    properties:
+      atencion_integral_otros:
+        $ref: '#/definitions/models.IntegralAttentionOther'
+      consulta_medicina:
+        $ref: '#/definitions/models.MedicalConsultation'
+    type: object
+  models.RequestNursingConsultation:
+    properties:
+      consulta_enfermeria:
+        $ref: '#/definitions/models.ConsultationMedicalArea'
+      datos_acompanante:
+        $ref: '#/definitions/models.AccompanyingData'
+      examenes:
+        $ref: '#/definitions/models.Exams'
+      revision_rutina:
+        $ref: '#/definitions/models.RoutineReview'
+    type: object
+  models.Residence:
+    properties:
+      address:
+        type: string
+      configuration:
+        $ref: '#/definitions/models.Configuration'
+      description:
+        type: string
+      floors:
+        items:
+          $ref: '#/definitions/models.Floor'
+        type: array
+      gender:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      status:
+        type: string
+      submissions:
+        items:
+          $ref: '#/definitions/models.Submission'
+        type: array
+    type: object
+  models.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      error:
+        type: boolean
+      metadata:
+        $ref: '#/definitions/models.Metadata'
+      msg:
+        type: string
+      type:
+        type: string
+    type: object
+  models.Room:
+    properties:
+      capacity:
+        type: integer
+      id:
+        type: string
+      number:
+        type: integer
+      status:
+        type: string
+    type: object
+  models.RoomMate:
+    properties:
+      code:
+        type: string
+      full_name:
+        type: string
+    type: object
+  models.RoutineReview:
+    properties:
+      comentarios:
+        type: string
+      fecha_ultima_regla:
+        type: string
+      fiebre_ultimo_quince_dias:
+        type: string
+      id:
+        type: string
+      secrecion_lesion_genitales:
+        type: string
+      tos_mas_quince_dias:
+        type: string
+    type: object
+  models.Sanction:
+    properties:
+      date:
+        type: string
+      description:
+        type: string
+    type: object
+  models.SexualityTest:
+    properties:
+      actividad_sexual:
+        type: string
+      comentarios:
+        type: string
+      id:
+        type: string
+      planificacion_familiar:
+        type: string
+    type: object
+  models.Student:
+    properties:
+      assigned_goods:
+        items:
+          $ref: '#/definitions/models.AssignedGood'
+        type: array
+      room_mates:
+        items:
+          $ref: '#/definitions/models.RoomMate'
+        type: array
+      sanctions:
+        items:
+          $ref: '#/definitions/models.Sanction'
+        type: array
+      student:
+        $ref: '#/definitions/models.StudentInfo'
+    type: object
+  models.StudentInfo:
+    properties:
+      admission_date:
+        type: string
+      code:
+        type: string
+      department:
+        type: string
+      faculty:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: integer
+      number_identification:
+        type: string
+      professional_school:
+        type: string
+      residence:
+        type: string
+      room:
+        $ref: '#/definitions/models.Room'
+      sex:
+        type: string
+    type: object
+  models.Submission:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      start:
+        type: string
+      state:
+        type: boolean
+    type: object
+  models.Vaccine:
+    properties:
+      comentarios:
+        type: string
+      fecha_dosis:
+        type: string
+      id:
+        type: string
+      tipo_vacuna:
+        type: string
+    type: object
+  models.VisitaGeneral:
+    properties:
+      codigo_estudiante:
+        type: string
+      departamento:
+        type: string
+      descripcion_motivo:
+        type: string
+      dni:
+        type: string
+      escuela:
+        type: string
+      facultad:
+        type: string
+      genero:
+        type: string
+      id:
+        type: string
+      lugar_atencion:
+        type: string
+      motivo_atencion:
+        type: string
+      nombre_completo:
+        type: string
+      tipo_usuario:
+        type: string
+    type: object
+  models.VisualTest:
+    properties:
+      comentarios:
+        type: string
+      id:
+        type: string
+      ojo_derecho:
+        type: string
+      ojo_izquierdo:
+        type: string
+      presion_ocular:
+        type: string
+    type: object
+  room_assignment.RequestRoomAssignment:
+    properties:
+      residence_id:
+        type: string
+    type: object
+  room_assignment.ResponseAutomaticAssignationResidence:
+    properties:
+      register_id:
+        type: string
+    type: object
+  rooms.AssignmentRoomRequest:
+    properties:
+      student_id:
+        type: integer
+      submission_id:
+        type: integer
+    type: object
+  rooms.DeleteAssignmentRoomRequest:
+    properties:
+      observation:
+        type: string
+      status:
+        type: string
+      student_id:
+        type: integer
+      submission_id:
+        type: integer
+    type: object
+  rooms.RoomRequest:
+    properties:
+      capacity:
+        type: integer
+      id:
+        type: string
+      status:
+        type: string
+    type: object
+info:
+  contact:
+    email: juanm.campos@unas.edu.pe
+    name: API Support
+  description: DBU API
+  license:
+    name: Comercial
+    url: http://bjungle.net/licenses
+  termsOfService: https://dbu.com/terms/
+  title: DBU API
+  version: "1.0"
+paths:
+  /api/v1/area_medica/ConsultationAssignment:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto paciente
+        en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtiene todas las instancias de pacientes
+      tags:
+      - Pacientes
+  /api/v1/area_medica/consulta_enfermeria:
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto consulta enfermería
+        en la base de datos
+      parameters:
+      - description: Datos para crear una consulta enfermería
+        in: body
+        name: models.RequestNursingConsultation
+        required: true
+        schema:
+          $ref: '#/definitions/models.RequestNursingConsultation'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Crear una instancia de consulta enfermería
+      tags:
+      - Consulta enfermería
+    put:
+      consumes:
+      - application/json
+      description: Método que permite actualizar una instancia del objeto consulta
+        enfermería en la base de datos
+      parameters:
+      - description: Datos para actualizar una consulta enfermería
+        in: body
+        name: models.RequestNursingConsultation
+        required: true
+        schema:
+          $ref: '#/definitions/models.RequestNursingConsultation'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Crear una instancia de consulta enfermería
+      tags:
+      - Consulta enfermería
+  /api/v1/area_medica/consulta_enfermeria/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto consulta enfermería
+        en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Elimina una instancia de consulta enfermería
+      tags:
+      - Consulta enfermería
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto consulta enfermería
+        en la base de datos por su id
+      parameters:
+      - description: consulta enfermería ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtiene una instancia de consulta enfermería por su id
+      tags:
+      - Consulta enfermería
+  /api/v1/area_medica/consulta_medicina:
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto consulta medicina
+        en la base de datos
+      parameters:
+      - description: Datos para crear MedicalConsultation
+        in: body
+        name: models.RequestMedicalConsultation
+        required: true
+        schema:
+          $ref: '#/definitions/models.RequestMedicalConsultation'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Crear una instancia de consulta medicina
+      tags:
+      - consulta medicinas
+    put:
+      consumes:
+      - application/json
+      description: Método que permite Actualiza una instancia del objeto consulta
+        medicina en la base de datos
+      parameters:
+      - description: Datos para actualizar MedicalConsultation
+        in: body
+        name: models.RequestMedicalConsultation
+        required: true
+        schema:
+          $ref: '#/definitions/models.RequestMedicalConsultation'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Actualiza una instancia de consulta medicina
+      tags:
+      - consulta medicinas
+  /api/v1/area_medica/consulta_medicina/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto consulta medicina
+        en la base de datos
+      parameters:
+      - description: consulta medicina ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Elimina una instancia de consulta medicina
+      tags:
+      - consulta medicinas
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto consulta medicina
+        en la base de datos por su id
+      parameters:
+      - description: consulta medicina ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtiene una instancia de consulta medicina por su id
+      tags:
+      - consulta medicinas
+  /api/v1/area_medica/consulta_odontologia:
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto consulta odontología
+        en la base de datos
+      parameters:
+      - description: Datos para crear consulta odontología
+        in: body
+        name: models.RequestDentistryConsultation
+        required: true
+        schema:
+          $ref: '#/definitions/models.RequestDentistryConsultation'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Crear una instancia de consulta odontología
+      tags:
+      - Consultas odontología
+    put:
+      consumes:
+      - application/json
+      description: Método que permite actualizar una instancia del objeto consulta
+        odontología en la base de datos
+      parameters:
+      - description: Datos para actualizar consulta enfermería
+        in: body
+        name: models.RequestDentistryConsultation
+        required: true
+        schema:
+          $ref: '#/definitions/models.RequestDentistryConsultation'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Actualiza una instancia de consulta odontología
+      tags:
+      - Consultas odontología
+  /api/v1/area_medica/consulta_odontologia/:id:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto consulta odontología
+        en la base de datos
+      parameters:
+      - description: consulta odontología ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Elimina una instancia de consulta odontología
+      tags:
+      - Consultas odontología
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto consulta odontología
+        en la base de datos por su id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtiene una instancia de consulta odontología por su id
+      tags:
+      - Consultas odontología
+  /api/v1/area_medica/consultas_enfermeria:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto consulta
+        enfermería en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtiene todas las instancias de NursingConsultation
+      tags:
+      - Consulta enfermería
+  /api/v1/area_medica/consultas_enfermeria/paciente/:id:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto consulta
+        enfermería en la base de datos por id del paciente
+      parameters:
+      - description: consulta enfermería ID paciente
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtiene todas las instancias de NursingConsultation
+      tags:
+      - Consulta enfermería
+  /api/v1/area_medica/consultas_medicina:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto consulta
+        medicina en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtiene todas las instancias de MedicalConsultation
+      tags:
+      - consulta medicinas
+  /api/v1/area_medica/consultas_medicina/paciente/:id:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto consulta medicina
+        en la base de datos por su id
+      parameters:
+      - description: consulta medicina ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtiene una instancia de consulta medicina por su id
+      tags:
+      - consulta medicinas
+  /api/v1/area_medica/consultas_odontologia:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto consulta
+        odontología en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtiene todas las instancias de DentistryConsultation
+      tags:
+      - Consultas odontología
+  /api/v1/area_medica/consultas_odontologia/paciente/:id:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto consulta
+        odontología en la base de datos por su id de paciente
+      parameters:
+      - description: consulta odontología ID paciente
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtiene una instancia de consulta odontología por su id
+      tags:
+      - Consultas odontología
+  /api/v1/area_medica/paciente:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto paciente en
+        la base de datos
+      parameters:
+      - description: Paciente ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Elimina una instancia de paciente
+      tags:
+      - Pacientes
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto paciente en la
+        base de datos
+      parameters:
+      - description: Datos para crear patients
+        in: body
+        name: models.Patients
+        required: true
+        schema:
+          $ref: '#/definitions/models.Patients'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Crear una instancia de paciente
+      tags:
+      - Pacientes
+    put:
+      consumes:
+      - application/json
+      description: Método que permite actualizar una instancia del objeto paciente
+        en la base de datos
+      parameters:
+      - description: Datos para actualizar patients
+        in: body
+        name: models.Patients
+        required: true
+        schema:
+          $ref: '#/definitions/models.Patients'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Actualiza una instancia de paciente
+      tags:
+      - Pacientes
+  /api/v1/area_medica/paciente/:id:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto paciente en
+        la base de datos por su DNI
+      parameters:
+      - description: Paciente ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtiene una instancia de paciente por su id
+      tags:
+      - Pacientes
+  /api/v1/area_medica/patients:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto paciente
+        en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtiene todas las instancias de pacientes
+      tags:
+      - Pacientes
+  /api/v1/area_medica/reporte/consultas:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener el reporte de consultas de enfermería
+      parameters:
+      - description: Área médica (obligatoria)
+        in: query
+        name: area_medica
+        required: true
+        type: string
+      - description: 'Fecha de inicio (opcional) - formato: YYYY-MM-DD'
+        in: query
+        name: fecha_inicio
+        type: string
+      - description: 'Fecha de fin (opcional) - formato: YYYY-MM-DD'
+        in: query
+        name: fecha_fin
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Obtener reporte de consultas de enfermería
+      tags:
+      - Reportes
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Endpoint para verificar el estado y conectividad del servicio
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Sistema conectado
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Error interno del servidor
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Verificar estado del servicio
+      tags:
+      - Health
+  /v1/automatizacion/asignacion-cuartos:
+    post:
+      consumes:
+      - application/json
+      description: Endpoint para ejecutar la asignación automática de cuartos en una
+        residencia específica
+      parameters:
+      - description: ID de la residencia para asignación
+        in: body
+        name: RequestRoomAssignment
+        required: true
+        schema:
+          $ref: '#/definitions/room_assignment.RequestRoomAssignment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Asignación exitosa
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/room_assignment.ResponseAutomaticAssignationResidence'
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "500":
+          description: Error interno del servidor
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Asignación automática de cuartos en residencias
+      tags:
+      - Automatización
+  /v1/convocatorias/{id}/alumnos-aceptados:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener la lista de alumnos asociados a una
+        convocatoria
+      parameters:
+      - description: ID de la convocatoria
+        in: path
+        name: id
+        required: true
+        type: integer
+      - default: 0
+        description: Número de página
+        in: query
+        minimum: 0
+        name: page
+        type: integer
+      - default: 0
+        description: Límite de registros por página
+        in: query
+        maximum: 100
+        minimum: 0
+        name: limit
+        type: integer
+      - description: Género del estudiante (masculino/femenino)
+        enum:
+        - masculino
+        - femenino
+        in: query
+        name: gender
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Lista de alumnos obtenida exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/models.Student'
+                  type: array
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "500":
+          description: Error interno del servidor
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Obtener alumnos por convocatoria
+      tags:
+      - Convocatorias
+  /v1/convocatorias/{id}/deuda/alumnos-aceptados:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener la lista de alumnos asociados a una
+        convocatoria
+      parameters:
+      - description: ID de la convocatoria
+        in: path
+        name: id
+        required: true
+        type: integer
+      - default: 1
+        description: Número de página
+        in: query
+        minimum: 1
+        name: page
+        type: integer
+      - default: 10
+        description: Límite de registros por página
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Lista de alumnos obtenida exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/models.Student'
+                  type: array
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "500":
+          description: Error interno del servidor
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Obtener alumnos por convocatoria
+      tags:
+      - Convocatorias
+  /v1/convocatorias/{id}/reporte-residencias:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite generar un reporte Excel en formato base64 de
+        los alumnos asociados a una convocatoria
+      parameters:
+      - description: ID de la convocatoria
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Reporte Excel generado exitosamente en formato base64
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "500":
+          description: Error interno del servidor
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Generar reporte Excel de alumnos por convocatoria
+      tags:
+      - Convocatorias
+  /v1/login:
+    post:
+      consumes:
+      - application/json
+      description: Método que permite iniciar sesión
+      parameters:
+      - description: Datos para realizar el inicio de sesión
+        in: body
+        name: RequestLogin
+        required: true
+        schema:
+          $ref: '#/definitions/authentication.RequestLogin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Login exitoso
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/authentication.JWTToken'
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      summary: Iniciar sesión
+      tags:
+      - Login
+  /v1/refresh-token:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite crear otra sesión a partir del refresh token
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Token refrescado exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/authentication.JWTToken'
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "403":
+          description: Error de permisos
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      summary: Refrescar token
+      tags:
+      - RefreshToken
+  /v1/residencias:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto Residencias
+        en la base de datos
+      parameters:
+      - description: ID de la Residencia
+        format: uuid
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Residencia eliminada exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Eliminar una instancia de Residencias
+      tags:
+      - Residencias
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto Residencias
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Residencias obtenidas exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/models.Residence'
+                  type: array
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Obtener todas las instancias de Residencias
+      tags:
+      - Residencias
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto Residencias en
+        la base de datos
+      parameters:
+      - description: Datos para crear Residencias
+        in: body
+        name: Residence
+        required: true
+        schema:
+          $ref: '#/definitions/models.Residence'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Residencia creada exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/models.Residence'
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Crear una instancia de Residencias
+      tags:
+      - Residencias
+    put:
+      consumes:
+      - application/json
+      description: Método que permite actualizar una instancia del objeto Residencias
+        en la base de datos
+      parameters:
+      - description: Datos para actualizar Residencias
+        in: body
+        name: Residence
+        required: true
+        schema:
+          $ref: '#/definitions/models.Residence'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Residencia actualizada exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/models.Residence'
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Actualizar una instancia de Residencias
+      tags:
+      - Residencias
+  /v1/residencias/:id:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto Residencias
+        por su ID
+      parameters:
+      - description: ID de la Residencia
+        format: uuid
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Residencia obtenida exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/models.Residence'
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Obtener una instancia de Residencias por ID
+      tags:
+      - Residencias
+  /v1/residencias/:id/alumnos:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todos los alumnos asociados a una Residencia
+      parameters:
+      - description: ID de la Residencia
+        format: uuid
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: 1
+        description: Número de página
+        in: query
+        minimum: 1
+        name: page
+        type: integer
+      - default: 10
+        description: Límite de registros por página
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - description: ID de la solicitud
+        in: query
+        name: submission_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Alumnos obtenidos exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/models.Student'
+                  type: array
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Obtener todos los alumnos de una Residencia
+      tags:
+      - Residencias
+  /v1/residencias/{id}/configuracion:
+    put:
+      consumes:
+      - application/json
+      description: Método que permite actualizar la configuración de una residencia
+        específica
+      parameters:
+      - description: ID de la Residencia
+        format: uuid
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Datos de configuración de la residencia
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Configuration'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Configuración actualizada exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/models.Configuration'
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Actualizar configuración de una Residencia
+      tags:
+      - Residencias
+  /v1/residencias/{id}/cuartos/:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todos los alumnos asociados a una Residencia
+      parameters:
+      - description: ID de la Residencia
+        format: uuid
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: 1
+        description: Número de página
+        in: query
+        minimum: 1
+        name: page
+        type: integer
+      - default: 10
+        description: Límite de registros por página
+        in: query
+        maximum: 100
+        minimum: 1
+        name: limit
+        type: integer
+      - description: ID de la solicitud
+        in: query
+        name: submission_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Alumnos obtenidos exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/models.Student'
+                  type: array
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Obtener todos los alumnos de una Residencia
+      tags:
+      - Residencias
+  /v1/residencias/cuartos:
+    put:
+      consumes:
+      - application/json
+      description: Método que permite Actualiza una instancia del objeto cuartos en
+        la base de datos
+      parameters:
+      - description: Datos para actualizar cuartos
+        in: body
+        name: RoomRequest
+        required: true
+        schema:
+          $ref: '#/definitions/rooms.RoomRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+      security:
+      - BearerAuth: []
+      summary: Actualiza una instancia de cuartos
+      tags:
+      - Cuartos
+  /v1/residencias/cuartos/{id}/asignar:
+    post:
+      consumes:
+      - application/json
+      description: Asigna un estudiante a un cuarto específico durante una convocatoria
+        activa
+      parameters:
+      - description: ID del cuarto
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Datos de asignación del estudiante
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/rooms.AssignmentRoomRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Asignación exitosa
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/models.AssignmentRoom'
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "201":
+          description: Asignación creada exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/models.AssignmentRoom'
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: 'Error en la solicitud: puede incluir errores de validación,
+            habitación sin capacidad (código 93), estudiante ya asignado (código 94),
+            estudiante con otra asignación (código 95), o estudiante no aceptado (código
+            96)'
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "403":
+          description: Permisos insuficientes
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "404":
+          description: Recurso no encontrado
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "500":
+          description: Error interno del servidor
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Asignar estudiante a un cuarto
+      tags:
+      - Cuartos
+  /v1/residencias/cuartos/{id}/eliminar-asignacion:
+    delete:
+      consumes:
+      - application/json
+      description: Elimina la asignación de un estudiante a un cuarto específico
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ID del cuarto
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Datos de la asignación a eliminar
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/rooms.DeleteAssignmentRoomRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Eliminación exitosa
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "403":
+          description: Permisos insuficientes
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "404":
+          description: Recurso no encontrado
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "500":
+          description: Error interno del servidor
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Eliminar asignación de cuarto
+      tags:
+      - Cuartos
+  /v1/visita-general:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las Visitas Generales registradas
+        en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Visitas Generales obtenidas exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  items:
+                    $ref: '#/definitions/models.VisitaGeneral'
+                  type: array
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Obtener todas las Visitas Generales
+      tags:
+      - Visita General
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto Visita General
+        en la base de datos
+      parameters:
+      - description: Datos para crear Visita General
+        in: body
+        name: VisitaGeneral
+        required: true
+        schema:
+          $ref: '#/definitions/models.VisitaGeneral'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Visita General creada exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/models.VisitaGeneral'
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Crear una instancia de Visita General
+      tags:
+      - Visita General
+    put:
+      consumes:
+      - application/json
+      description: Método que permite actualizar una instancia del objeto Visita General
+        en la base de datos
+      parameters:
+      - description: Datos para actualizar Visita General
+        in: body
+        name: VisitaGeneral
+        required: true
+        schema:
+          $ref: '#/definitions/models.VisitaGeneral'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Visita General actualizada exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/models.VisitaGeneral'
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Actualizar una Visita General
+      tags:
+      - Visita General
+  /v1/visita-general/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto Visita General
+        de la base de datos
+      parameters:
+      - description: ID de la Visita General a eliminar
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Visita General eliminada exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Eliminar una Visita General
+      tags:
+      - Visita General
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto Visita General
+        por su ID
+      parameters:
+      - description: ID de la Visita General a obtener
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Visita General obtenida exitosamente
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/models.VisitaGeneral'
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "400":
+          description: Error en la solicitud
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+        "401":
+          description: Error de autenticación
+          schema:
+            allOf:
+            - $ref: '#/definitions/models.Response'
+            - properties:
+                code:
+                  type: integer
+                data: {}
+                error:
+                  type: boolean
+                msg:
+                  type: string
+                type:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Obtener una Visita General por ID
+      tags:
+      - Visita General
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

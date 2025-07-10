@@ -1,0 +1,94 @@
+name: Go CI/CD
+
+on:
+  push:
+    branches: 
+      - "develop"
+    tags:
+      - "release/*"
+
+env:
+  API_NAME: dbu-api
+  SERVICE_NAME: dbu-api.service
+  QA_PATH: /opt/services/dbu-api
+  PROD_PATH: /opt/services/dbu-api
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.23'
+        
+    - name: Install dependencies
+      run: |
+        echo "Installing dependencies..."
+        go mod tidy
+        go mod vendor
+    
+    - name: Build
+      run: |
+        echo "Building application..."
+        mkdir -p build
+        GOOS=linux GOARCH=amd64 go build -v -o build/${{ env.API_NAME }}
+        chmod +x build/${{ env.API_NAME }}
+        
+    - name: Deploy to QA
+      if: github.ref == 'refs/heads/develop'
+      run: |
+        echo "Deploying to QA environment..."
+        sudo apt-get update && sudo apt-get install -y sshpass
+        
+        # Detener el servicio
+        sshpass -p "${{ secrets.QA_SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.QA_SERVER_USER }}@${{ secrets.QA_SERVER_HOST }}" "echo '${{ secrets.QA_SERVER_PASSWORD }}' | sudo -S systemctl stop ${{ env.SERVICE_NAME }}"
+        
+        # Crear backup del compilado existente si existe
+        sshpass -p "${{ secrets.QA_SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.QA_SERVER_USER }}@${{ secrets.QA_SERVER_HOST }}" "
+          if [ -f ${{ env.QA_PATH }}/${{ env.API_NAME }} ]; then
+            echo '${{ secrets.QA_SERVER_PASSWORD }}' | sudo -S mv ${{ env.QA_PATH }}/${{ env.API_NAME }} ${{ env.QA_PATH }}/${{ env.API_NAME }}-bk-\$(date +%d-%m-%Y)
+          fi
+        "
+        
+        # Subir el nuevo compilado directamente al directorio final
+        sshpass -p "${{ secrets.QA_SERVER_PASSWORD }}" scp -o StrictHostKeyChecking=no build/${{ env.API_NAME }} "${{ secrets.QA_SERVER_USER }}@${{ secrets.QA_SERVER_HOST }}:${{ env.QA_PATH }}/"
+        
+        # Ajustar permisos del nuevo compilado
+        sshpass -p "${{ secrets.QA_SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.QA_SERVER_USER }}@${{ secrets.QA_SERVER_HOST }}" "
+          echo '${{ secrets.QA_SERVER_PASSWORD }}' | sudo -S chown ${{ secrets.QA_SERVER_USER }}:${{ secrets.QA_SERVER_USER }} ${{ env.QA_PATH }}/${{ env.API_NAME }}
+          echo '${{ secrets.QA_SERVER_PASSWORD }}' | sudo -S chmod +x ${{ env.QA_PATH }}/${{ env.API_NAME }}
+        "
+        
+        # Reiniciar el servicio
+        sshpass -p "${{ secrets.QA_SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.QA_SERVER_USER }}@${{ secrets.QA_SERVER_HOST }}" "echo '${{ secrets.QA_SERVER_PASSWORD }}' | sudo -S systemctl restart ${{ env.SERVICE_NAME }}"
+        
+    - name: Deploy to Production
+      if: startsWith(github.ref, 'refs/tags/release/')
+      run: |
+        echo "Deploying to Production environment..."
+        sudo apt-get update && sudo apt-get install -y sshpass
+        
+        # Detener el servicio
+        sshpass -p "${{ secrets.PROD_SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.PROD_SERVER_USER }}@${{ secrets.PROD_SERVER_HOST }}" "echo '${{ secrets.PROD_SERVER_PASSWORD }}' | sudo -S systemctl stop ${{ env.SERVICE_NAME }}"
+        
+        # Crear backup del compilado existente si existe
+        sshpass -p "${{ secrets.PROD_SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.PROD_SERVER_USER }}@${{ secrets.PROD_SERVER_HOST }}" "
+          if [ -f ${{ env.PROD_PATH }}/${{ env.API_NAME }} ]; then
+            echo '${{ secrets.PROD_SERVER_PASSWORD }}' | sudo -S mv ${{ env.PROD_PATH }}/${{ env.API_NAME }} ${{ env.PROD_PATH }}/${{ env.API_NAME }}-bk-\$(date +%d-%m-%Y)
+          fi
+        "
+        
+        # Subir el nuevo compilado directamente al directorio final
+        sshpass -p "${{ secrets.PROD_SERVER_PASSWORD }}" scp -o StrictHostKeyChecking=no build/${{ env.API_NAME }} "${{ secrets.PROD_SERVER_USER }}@${{ secrets.PROD_SERVER_HOST }}:${{ env.PROD_PATH }}/"
+        
+        # Ajustar permisos del nuevo compilado
+        sshpass -p "${{ secrets.PROD_SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.PROD_SERVER_USER }}@${{ secrets.PROD_SERVER_HOST }}" "
+          echo '${{ secrets.PROD_SERVER_PASSWORD }}' | sudo -S chown ${{ secrets.PROD_SERVER_USER }}:${{ secrets.PROD_SERVER_USER }} ${{ env.PROD_PATH }}/${{ env.API_NAME }}
+          echo '${{ secrets.PROD_SERVER_PASSWORD }}' | sudo -S chmod +x ${{ env.PROD_PATH }}/${{ env.API_NAME }}
+        "
+        
+        # Reiniciar el servicio
+        sshpass -p "${{ secrets.PROD_SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no "${{ secrets.PROD_SERVER_USER }}@${{ secrets.PROD_SERVER_HOST }}" "echo '${{ secrets.PROD_SERVER_PASSWORD }}' | sudo -S systemctl restart ${{ env.SERVICE_NAME }}"

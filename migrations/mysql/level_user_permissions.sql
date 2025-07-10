@@ -1,0 +1,40 @@
+CREATE TABLE `level_user_permissions` (
+                                          `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                                          `permission_id` bigint(20) unsigned DEFAULT NULL,
+                                          `level_user_id` bigint(20) unsigned DEFAULT NULL,
+                                          `created_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+                                          `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+                                          PRIMARY KEY (`id`),
+                                          KEY `level_user_permission_level_user_id_foreign` (`level_user_id`),
+                                          KEY `level_user_permissions_permission_id_foreign` (`permission_id`),
+                                          CONSTRAINT `level_user_permission_level_user_id_foreign` FOREIGN KEY (`level_user_id`) REFERENCES `level_user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+                                          CONSTRAINT `level_user_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+INSERT INTO `level_user_permissions` (`id`, `permission_id`, `level_user_id`, `created_at`, `updated_at`) VALUES
+                                                                                                              (1, 1, 1, '2024-11-07 23:45:37', '2024-11-07 23:45:37'),
+                                                                                                              (2, 4, 1, '2024-11-07 23:45:37', '2024-11-07 23:45:37'),
+                                                                                                              (3, 3, 1, '2024-11-07 23:45:37', '2024-11-07 23:45:37'),
+                                                                                                              (4, 2, 1, '2024-11-07 23:45:37', '2024-11-07 23:45:37'),
+                                                                                                              (5, 5, 1, '2024-11-07 23:45:37', '2024-11-07 23:45:37'),
+                                                                                                              (6, 6, 1, '2024-12-13 15:23:06', '2024-12-13 15:23:06'),
+                                                                                                              (7, 7, 1, '2024-12-17 00:34:13', '2024-12-17 00:34:13'),
+                                                                                                              (8, 8, 1, '2024-12-17 00:34:13', '2024-12-17 00:34:13'),
+                                                                                                              (9, 9, 1, '2025-01-18 16:52:25', '2025-01-18 16:52:25'),
+                                                                                                              (10, 10, 1, '2025-01-18 17:10:40', '2025-01-18 17:10:40'),
+                                                                                                              (11, 11, 1, '2025-01-18 17:31:33', '2025-01-18 17:31:33'),
+                                                                                                              (12, 12, 1, '2025-01-28 03:40:28', '2025-01-28 03:40:28'),
+                                                                                                              (13, 13, 1, '2025-01-29 01:54:45', '2025-01-29 01:54:45'),
+                                                                                                              (14, 14, 1, '2025-01-30 06:28:40', '2025-01-30 06:28:40'),
+                                                                                                              (15, 15, 1, '2025-01-30 14:35:46', '2025-01-30 14:35:46'),
+                                                                                                              (16, 16, 1, '2025-01-30 14:35:54', '2025-01-30 14:35:54'),
+                                                                                                              (17, 17, 1, '2025-01-30 14:35:54', '2025-01-30 14:35:54'),
+                                                                                                              (18, 18, 1, '2025-01-30 14:35:54', '2025-01-30 14:35:54'),
+                                                                                                              (19, 19, 1, '2025-01-30 14:35:54', '2025-01-30 14:35:54'),
+                                                                                                              (20, 22, 1, '2025-01-30 14:35:54', '2025-01-30 14:35:54'),
+                                                                                                              (21, 23, 1, '2025-01-30 14:35:54', '2025-01-30 14:35:54'),
+                                                                                                              (22, 24, 1, '2025-03-11 22:19:07', '2025-03-11 22:19:07'),
+                                                                                                              (23, 25, 1, '2025-03-13 22:59:38', '2025-03-13 22:59:38'),
+                                                                                                              (24, 26, 1, '2025-03-15 15:11:46', '2025-03-15 15:11:46'),
+                                                                                                              (25, 27, 1, '2025-03-15 15:11:57', '2025-03-15 15:11:57');

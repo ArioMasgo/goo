@@ -1,0 +1,23 @@
+CREATE TABLE `visitaGeneral` (
+  `id` char(36) NOT NULL,
+  `tipo_usuario` enum('alumno','docente','administrativo') NOT NULL,
+  `codigo_estudiante` varchar(20) DEFAULT NULL,
+  `dni` varchar(8) DEFAULT NULL,
+  `nombre_completo` varchar(100) NOT NULL,
+  `genero` enum('M','F') DEFAULT NULL,
+  `edad` int UNSIGNED DEFAULT NULL,
+  `escuela` varchar(100) DEFAULT NULL,
+  `area` varchar(100) DEFAULT NULL,
+  `motivo_atencion` set('social','academico','salud','economico') NOT NULL,
+  `descripcion_motivo` text NOT NULL,
+  `url_imagen` varchar(255) DEFAULT NULL,
+  `departamento` varchar(100) DEFAULT NULL,
+  `provincia` varchar(100) DEFAULT NULL,
+  `distrito` varchar(100) DEFAULT NULL,
+  `lugar_atencion` varchar(255) NOT NULL,
+  `created_by` int UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_by` int UNSIGNED DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
